@@ -1,0 +1,36 @@
+
+    <!-- <p>Select Temperature Scale (Currently: {{ tempScale }})</p> -->
+
+    <button 
+        hx-post="/tempScale" 
+        hx-swap="outerHTML"
+        name="tempScale" 
+        value="F">
+        F
+    </button>
+
+    <button 
+        hx-post="/tempScale" 
+        hx-swap="outerHTML"
+        name="tempScale" 
+        value="C">
+        C
+    </button>
+
+    <button 
+        hx-post="/tempScale" 
+        hx-swap="outerHTML"
+        name="tempScale" 
+        value="K">
+        K
+    </button>
+    
+<div id="temp-scale-display">
+    {% if temperature %} 
+        <p>
+            {{temperature}}
+            <span class="temp-scale">°{{tempScale}}</span>
+        </p>
+    {% endif %}
+</div>
+

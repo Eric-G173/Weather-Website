@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org"></script>
+    <title>CloudySensor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> 
+</head>
+
+<body>
+    <div class="hero">
+<header class="top-bar">
+    <h1>CloudySensor</h1>
+</header>
+</div>
+
+
+
+<form class="city-form" action="/submit" method="POST">
+    <input type="text" name="city" placeholder="Enter your city">
+    <button type="submit">Submit</button>
+</form>
+<nav class = "about-link">
+    <a href ="#">About me</a>
+    <a href = "#">Test</a>
+</nav>
+
+{% if error %}
+<p style="color:red;">{{ error }}</p>
+{% endif %}
+
+
+<script src="http://127.0.0.1:35729/livereload.js?snipver=1"></script>
+</body>
+</html>
