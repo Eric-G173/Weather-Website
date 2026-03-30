@@ -177,3 +177,24 @@ body {
     margin-top: -120;
 }
 
+button {
+    transition: 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+button.active {
+    background-color: #fff;
+    color: #000;
+    transform: scale(1.15);
+}
+#temp-scale-container {
+    position: relative;
+    z-index: 10;
+}
+
+#temp-scale-display {
+    pointer-events: none;
+}

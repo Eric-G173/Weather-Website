@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, session, redirect
-from livereload import Server # For VSC testing only, remove if moved to web host
 
 import APITesting
 from errorValidation import errorCheck
@@ -50,14 +49,22 @@ def submit():
 # ---------------------------
 @app.route("/tempScale", methods=["POST"])
 def tempScale():
-    session["scale"] = request.form.get("tempScale")
-    city = session.get("city")
+    print("FORM:", request.form)
+
+    scale = request.form.get("tempScale")  # Gets from post value
+
+    session["scale"] = scale  #Stores it after
     scale = session.get("scale", "F")
-
-    temperature = None
+    city = session.get("city")
+    dataDict = {
+        "tempNow": None,
+        "feels_like": None,
+        "temp_max": None,
+        "temp_min": None,
+        "condition": None
+    }
     if city:
-        temperature = APITesting.get_weather(city, scale)
-
+        dataDict = APITesting.get_weather(city, scale)
     return render_template(
         "partials/temperature.html",
          city=city,
@@ -70,14 +77,6 @@ def tempScale():
         error = None
     )
 
-
-# ---------------------------
-# LIVERELOAD SERVER
-# ---------------------------
-# For VSC testing only, remove if moved to web host
 if __name__ == "__main__":
-    server = Server(app.wsgi_app)
-    server.watch('static/*.css')
-    server.watch('templates/*.html')
-    server.watch('templates/**/*.html')
-    server.serve(port=5000, debug=True)
+    app.run(debug=True)
+
