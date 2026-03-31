@@ -37,12 +37,13 @@
 
 <!-- Inject raw Kelvin values -->
 <script>
-    rawTemp = {{ raw_temp }};
-    rawHigh = {{ raw_high }};
-    rawLow = {{ raw_low }};
-    rawFeels = {{ raw_feels }};
+    rawTemp = Number({{ temperature | tojson }});
+    rawHigh = Number({{ high| tojson }});
+    rawLow = Number({{ low | tojson }});
+    rawFeels = Number({{ feels_like | tojson }});
     updateDisplay();
 </script>
+
 
 </body>
 </html>

@@ -35,7 +35,6 @@ def submit():
         high = dataDict["temp_max"],
         low = dataDict["temp_min"],
         condition = dataDict["condition"],
-        tempScale=scale
     )
 
 

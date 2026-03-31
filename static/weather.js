@@ -5,14 +5,14 @@ let rawFeels = null;
 
 let defaultScale= "F"; // Will be default for website
 
-function toF(k) { return (k - 273.15) * 9/5 + 32; }
-function toC(k) { return k - 273.15; }
-function toK(k) { return k; }
+function toF(c) { return c * (9/5) +32; }
+function toC(c) { return c }
+function toK(c) { return c + 273.15; }
 
-function convert(k) {
-    if (currentScale === "F") return toF(k);
-    if (currentScale === "C") return toC(k);
-    return toK(k);
+function convert(c) {
+    if (currentScale === "F") return toF(c);
+    if (currentScale === "K") return toC(c);
+    return toK(c);
 }
 
 function updateDisplay() {

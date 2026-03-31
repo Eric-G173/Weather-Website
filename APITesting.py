@@ -5,34 +5,30 @@ from flask import render_template
 
 
 def get_weather(city_name):
-    api_key = "dbc6944ae3eb1c455b75a154d922a2f4"
     city = city_name
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
-    try:
-        response = requests.get(url)
-        data = response.json()
-        if data.get("cod") == "404": 
-            return None
-        main = data["main"]
-        weather = data["weather"][0]
-        weatherData = {
-            "tempNow": main["temp"], 
-            "temp_max":main["temp_max"], 
-            "temp_min": main["temp_min"], 
-            "feels_like":main["feels_like"], 
-            "condition": weather["description"]
-        } 
+    geo_location = f"https://geocoding-api.open-meteo.com/v1/search?name={city}"
+    response = requests.get(geo_location).json()
+    if response.get("cod") == "404": 
+        return None
+    lat = response["results"][0]["latitude"]
+    lon = response["results"][0]["longitude"]
 
-    except requests.exceptions.HTTPError:
-        print(f"Error, cannot connect to website!")
+    weather_url = (
+    f"https://api.open-meteo.com/v1/forecast?"
+    f"latitude={lat}&longitude={lon}"
+    f"&current=temperature,apparent_temperature,weather_code"
+    f"&daily=temperature_2m_max,temperature_2m_min"
+    )
 
-    except Exception:
-        print(f"An unidentified error occured! Ensure city is properly spelled.")
-    
-    return Data(weatherData)
+    weather_response = requests.get(weather_url).json()
+    current = weather_response["current"]
+    daily = weather_response["daily"]
 
+    return { # All in celsius (minus condition)
+        "tempNow": current["temperature"],              
+        "temp_max": daily["temperature_2m_max"][0],     
+        "temp_min": daily["temperature_2m_min"][0],     
+        "feels_like": current["apparent_temperature"],
+        "condition": current["weather_code"]             
+    }
 
-#["main"]["temp_max"] = high
-#["main"]["temp_min"] = low
-#["main"]["feels_like"] = feels like
-#["weather"][0]["description"] = condition
