@@ -3,29 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/htmx.org"></script>
     <title>CloudySensor</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> 
 </head>
 
 <body>
 
-
 <div class="weather-card">
-    <h1 class="weather-city">{{ city }}</h1>
+    <h1 class="weather-city" id="city">{{ city }}</h1>
 
-    <div id="temperatureDisplay" class="weather-temp">
-        {% include "partials/temperature.html" %}
+    <div id="temp-scale-container" class="weather-temp">
+        <button onclick="setScale('F')">F</button>
+        <button onclick="setScale('C')">C</button>
+        <button onclick="setScale('K')">K</button>
+
+        <div id="temp-scale-display">
+            <p id="temp"></p>
+        </div>
     </div>
-
-    <p class="weather-condition">{{ condition }}</p>
 
     <div class="weather-highlow">
-        <span>H: {{ high }}°</span>
-        <span>L: {{ low }}°</span>
-
-        <p>Feels like: {{feels_like}}°</p>
+        <span id="high"></span>
+        <span id="low"></span>
     </div>
+
+    <div id="feels-like"></div>
+
+    <p class="weather-condition" id="condition">{{ condition }}</p>
+</div>
+
+<!-- Load your JS file -->
+<script src="{{ url_for('static', filename='weather.js') }}"></script>
+
+<!-- Inject raw Kelvin values -->
+<script>
+    rawTemp = {{ raw_temp }};
+    rawHigh = {{ raw_high }};
+    rawLow = {{ raw_low }};
+    rawFeels = {{ raw_feels }};
+    updateDisplay();
+</script>
 
 </body>
 </html>

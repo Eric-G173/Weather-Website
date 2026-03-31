@@ -1,22 +1,10 @@
 import json
 import requests
 from flask import render_template 
-def Conversion(dataArg, TempType):
-    for data in dataArg:
-        if data != "condition":
-            tempValue = dataArg[data]
-            if TempType == "F":
-                dataArg[data] = int(tempValue * (9/5) - 459.67)
-            elif TempType == "C":
-                dataArg[data] = int(tempValue - 273.15)
-            elif TempType == "K":
-                continue
-            else:
-                print("An unexpected temperature scale error has occured in APITesting")
-    return dataArg
 
 
-def get_weather(city_name, scale):
+
+def get_weather(city_name):
     api_key = "dbc6944ae3eb1c455b75a154d922a2f4"
     city = city_name
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
@@ -41,7 +29,7 @@ def get_weather(city_name, scale):
     except Exception:
         print(f"An unidentified error occured! Ensure city is properly spelled.")
     
-    return Conversion(weatherData, scale)
+    return Data(weatherData)
 
 
 #["main"]["temp_max"] = high
