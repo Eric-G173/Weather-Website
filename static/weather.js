@@ -1,18 +1,20 @@
-let rawTemp = null;
-let rawHigh = null;
-let rawLow = null;
-let rawFeels = null;
+const dataEl = document.getElementById("weather-data");
+
+const rawTemp = Number(dataEl.dataset.temp);
+const rawHigh = Number(dataEl.dataset.high);
+const rawLow = Number(dataEl.dataset.low);
+const rawFeels = Number(dataEl.dataset.feels);
+
+updateDisplay();
 
 let defaultScale= "F"; // Will be default for website
 
 function toF(c) { return c * (9/5) +32; }
 function toC(c) { return c }
-function toK(c) { return c + 273.15; }
 
 function convert(c) {
     if (currentScale === "F") return toF(c);
-    if (currentScale === "K") return toC(c);
-    return toK(c);
+    return toC(c);
 }
 
 function updateDisplay() {

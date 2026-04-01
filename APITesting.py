@@ -23,7 +23,7 @@ def get_weather(city_name):
     weather_response = requests.get(weather_url).json()
     current = weather_response["current"]
     daily = weather_response["daily"]
-
+    print(current["temperature"],)
     return { # All in celsius (minus condition)
         "tempNow": current["temperature"],              
         "temp_max": daily["temperature_2m_max"][0],     

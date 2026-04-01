@@ -15,7 +15,6 @@
     <div id="temp-scale-container" class="weather-temp">
         <button onclick="setScale('F')">F</button>
         <button onclick="setScale('C')">C</button>
-        <button onclick="setScale('K')">K</button>
 
         <div id="temp-scale-display">
             <p id="temp"></p>
@@ -32,17 +31,16 @@
     <p class="weather-condition" id="condition">{{ condition }}</p>
 </div>
 
-<!-- Load your JS file -->
+
+<div id="weather-data"
+     data-temp="{{ temperature }}"
+     data-high="{{ high }}"
+     data-low="{{ low }}"
+     data-feels="{{ feels_like }}">
+</div>
+
 <script src="{{ url_for('static', filename='weather.js') }}"></script>
 
-<!-- Inject raw Kelvin values -->
-<script>
-    rawTemp = Number({{ temperature | tojson }});
-    rawHigh = Number({{ high| tojson }});
-    rawLow = Number({{ low | tojson }});
-    rawFeels = Number({{ feels_like | tojson }});
-    updateDisplay();
-</script>
 
 
 </body>
