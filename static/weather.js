@@ -61,20 +61,23 @@ function convert(c) {
 }
 
 function updateDisplay() {
-    document.getElementById("temp").textContent =
-        `${convert(rawTemp).toFixed(1)}°${currentScale}`;
-
     document.getElementById("high").textContent =
-        `H: ${convert(rawHigh).toFixed(1)}°`;
+        `H: ${Math.round(convert(rawHigh))}°`;
 
     document.getElementById("low").textContent =
-        `L: ${convert(rawLow).toFixed(1)}°`;
+        `L: ${Math.round(convert(rawLow))}°`;
 
     document.getElementById("feels-like").textContent =
-        `Feels like: ${convert(rawFeels).toFixed(1)}°`;
+        `Feels like: ${Math.round(convert(rawFeels))}°`;
 
     document.getElementById("condition").textContent =
     weatherDescriptions[conditionCode] || "Unknown";
+
+    document.getElementById("temp-number").textContent =
+    Math.round(convert(rawTemp));
+
+document.querySelector(".temp-scale").textContent =
+    `°${currentScale}`;
 
 }
 

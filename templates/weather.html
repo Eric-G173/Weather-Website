@@ -7,17 +7,20 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> 
 </head>
 
-<body>
-
+<body class = "weather-page">
 <div class="weather-card">
     <h1 class="weather-city" id="city">{{ city }}</h1>
 
     <div id="temp-scale-container" class="weather-temp">
+        <div id = "temp-Buttons">
         <button onclick="setScale('F')">F</button>
         <button onclick="setScale('C')">C</button>
-
+</div>
         <div id="temp-scale-display">
-            <p id="temp"></p>
+            <p id="temp">
+    <span id="temp-number"></span>
+    <span class="temp-scale"></span>
+</p>
         </div>
     </div>
 
@@ -29,9 +32,9 @@
     <div id="feels-like"></div>
 
     <p class="weather-condition"  id="condition" data-code="{{ condition }}">{{ condition }}</p>
+
+
 </div>
-
-
 <div id="weather-data"
      data-temp="{{ temperature }}"
      data-high="{{ high }}"

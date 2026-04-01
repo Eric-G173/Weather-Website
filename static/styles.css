@@ -6,10 +6,16 @@ html, body {
 }
 
 body {
-  background-image: url("/static/images/cloudPNG.jpg");
+   background-image: url("/static/images/cloudPNG.jpg");
   background-size: cover;
-  background-position: center;
+    background-position: center;
   background-repeat: no-repeat;
+
+}
+.weather-page {
+
+   display: flex;
+    justify-content: center;
 }
 
 .top-bar {
@@ -32,13 +38,12 @@ body {
 .hero {
   position: relative;
   background: none;
-  height: auto;              /* allow it to grow naturally */
+  height: auto;             
   display: flex;
-  flex-direction: column;    /* stack title → form → nav */
-  align-items: center;       /* center horizontally */
-  gap: 20px;                 /* spacing between elements */
+  flex-direction: column;  
+  align-items: center;       
+  gap: 20px;                
 }
-
 
 .hero::before {
   content: "";
@@ -51,9 +56,9 @@ body {
 .city-form {
   margin-bottom: 40px;
   display: flex;
-  gap: 10px; /* space between input + button */
+  gap: 10px; 
   justify-content: center;
-  margin-top: -40px; /* move it down */
+  margin-top: -40px; 
   position: relative;
   z-index: 10;
 }
@@ -87,8 +92,14 @@ body {
 .about-link {
   display: flex;
   justify-content: center;
-  gap: 20px;   /* change this number to increase/decrease spacing */
+  gap: 20px;   
   margin-top: 0px;
+}
+
+.temp-scale {
+    font-size: 0.5em;    
+    vertical-align: top;   
+    margin-left: 2px;      
 }
 
 
@@ -114,7 +125,7 @@ body {
     font-size: 1.8rem;
     font-weight: 600;
     font-size: 40px;
-    margin-top: 100px;
+    margin-top: 55px;
     margin-bottom: 5px;
     display: flex;
     justify-content: center;
@@ -124,6 +135,7 @@ body {
     font-size: 4.5rem;
     font-weight: 700;
     margin: 10px 0;
+right: -5px;
 }
 
 .weather-condition {
@@ -131,8 +143,17 @@ body {
     opacity: 0.85;
     justify-content: center;
     display: flex;
-    margin-top: -60px;
+    margin-top: -100px;
+    
 }
+
+.temp-scale {
+    font-size: 0.45em;     
+    vertical-align: super; 
+    margin-left: 2px;       
+    opacity: 0.9;        
+}
+
 
 .weather-highlow {
     display: flex;
@@ -141,7 +162,8 @@ body {
     font-size: 1.1rem;
     font-weight: 500;
     opacity: 0.9;
-    margin-top: -120;
+position: relative;
+    top: -20px;
 }
 
 #temp-scale-display {
@@ -157,24 +179,25 @@ body {
 }
 
 .temp-reading {
-  line-height: 1; /* removes extra vertical space */
+  line-height: 1; 
 }
 
 .temp-scale {
-  font-size: 0.45em;        /* smaller relative to the number */
-  vertical-align: top;      /* lifts it up */
-  margin-left: 2px;         /* optional spacing */
-  display: inline-block;    /* prevents baseline stretching */
+  font-size: 0.45em;      
+  vertical-align: top;     
+  margin-left: 2px;      
+  display: inline-block;    
 }
 
 .feels-like {
  display: flex;
     justify-content: center;
-    gap: 40px;
+    align-items: center;
+    gap: 20px;
     font-size: 1.1rem;
     font-weight: 500;
     opacity: 0.9;
-    margin-top: -120;
+    margin-top: -180px;
 }
 
 button {
@@ -194,7 +217,18 @@ button.active {
     position: relative;
     z-index: 10;
 }
+#temp-scale-container button {
+  position: relative;
+    top: -120px;
+    left: 400px;
+}
 
 #temp-scale-display {
     pointer-events: none;
 }
+
+.weather-card {
+    text-align: center;
+    padding-top: 20px;
+}
+
