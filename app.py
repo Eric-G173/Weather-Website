@@ -4,9 +4,6 @@ import APITesting
 from errorValidation import errorCheck
 
 app = Flask(__name__)
-app.secret_key = "superweatherfatapp"
-
-
 
 @app.route("/")
 def home():
