@@ -1,14 +1,23 @@
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session
 
 import APITesting
-from errorValidation import errorCheck
 from dotenv import load_dotenv
 import os
+import re
 
 load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
+
+def errorCheck(cityName):
+    if not cityName:
+        return "Please enter a city."
+    if bool(re.search(r'\d', cityName)): 
+        return "City cannot contain numbers."
+    if len(cityName) > 100: 
+       return "City name too long."
+    return None
 
 
 @app.route("/")
