@@ -18,92 +18,57 @@ body {
     justify-content: center;
 }
 
-.top-bar {
-  font-style: italic;
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(180deg, #ffffff, #d7e8ff);
-  -webkit-background-clip: text;
-  color: transparent;
-  text-shadow: 0 2px 6 px rgba(0, 0, 0, 0.55);
-  padding: 40px 20px 0 20px;
-  letter-spacing: 1px;
-  min-height: -50px;
-  height: auto;
-  padding-top: 200px;
-  font-weight: 600;
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-}
 
-.hero {
+.index-title {
   position: relative;
-  background: none;
   height: auto;             
   display: flex;
   flex-direction: column;  
-  align-items: center;       
-  gap: 20px;                
+  align-items: center;         
+  font-style: italic;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(180deg, #ffffff, #d7e8ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.55);
+  padding: 25vh 20px 0 20px;
+  letter-spacing: 1px;
+  height: auto;
+  font-weight: 600;
+  font-size: 1.5rem;
+  
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
-  pointer-events: none;
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 .city-form {
+  padding-left: 10px;
   margin-bottom: 40px;
   display: flex;
-  gap: 10px; 
+  gap: 15px; 
   justify-content: center;
-  margin-top: -40px; 
-  position: relative;
-  z-index: 10;
 }
 
 .city-form input {
   padding: 10px 14px;
   font-size: 1rem;
   border-radius: 6px;
-  border: none;
-}
-
-.city-form button {
-  padding: 12px 26px;
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(6px);
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  transition: transform 0.25s ease, background 0.25s ease;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.city-form button:hover {
-  transform: scale(1.12);
-  background: rgba(255, 255, 255, 0.28);
+  border: 1px solid transparent;
 }
 
 .about-link {
   display: flex;
   justify-content: center;
   gap: 20px;   
-  margin-top: 0px;
 }
 
-.temp-scale {
-    font-size: 0.5em;    
-    vertical-align: top;   
-    margin-left: 2px;      
-}
-
-
-.about-link a {
+.index-btn {
   padding: 12px 26px;
   border-radius: 30px;
   background: rgba(255, 255, 255, 0.15);
@@ -113,38 +78,36 @@ body {
   font-weight: 500;
   border: 1px solid rgba(255, 255, 255, 0.25);
   transition: transform 0.25s ease, background 0.25s ease;
+  cursor: pointer;
   display: inline-block;
 }
 
-.about-link a:hover {
+.index-btn:hover {
   transform: scale(1.12);
   background: rgba(255, 255, 255, 0.28);
 }
 
+
 .weather-city {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     font-weight: 600;
-    font-size: 40px;
-    margin-top: 55px;
+    margin-top: 45px;
     margin-bottom: 5px;
-    display: flex;
-    justify-content: center;
+   text-align: center;
 }
 
 .weather-temp {
     font-size: 4.5rem;
     font-weight: 700;
     margin: 10px 0;
-right: -5px;
+    text-align: center
 }
 
 .weather-condition {
     font-size: 1.2rem;
     opacity: 0.85;
-    justify-content: center;
-    display: flex;
-    margin-top: -100px;
-    
+   text-align: center;
+    margin-top: -90px;
 }
 
 .temp-scale {
@@ -163,41 +126,17 @@ right: -5px;
     font-weight: 500;
     opacity: 0.9;
 position: relative;
-    top: -20px;
+      margin-bottom: 10px;
 }
 
 #temp-scale-display {
-  display: flex;
-    justify-content: center;
-    gap: 20px;
+  text-align: center;
     font-weight: 500;
     opacity: 0.9;
     margin-top: -140px;
     font-size: 60px;
     margin-left: 35px;
     
-}
-
-.temp-reading {
-  line-height: 1; 
-}
-
-.temp-scale {
-  font-size: 0.45em;      
-  vertical-align: top;     
-  margin-left: 2px;      
-  display: inline-block;    
-}
-
-.feels-like {
- display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    opacity: 0.9;
-    margin-top: -180px;
 }
 
 button {
@@ -213,18 +152,11 @@ button.active {
     color: #000;
     transform: scale(1.15);
 }
-#temp-scale-container {
-    position: relative;
-    z-index: 10;
-}
+
 #temp-scale-container button {
   position: relative;
     top: -120px;
     left: 400px;
-}
-
-#temp-scale-display {
-    pointer-events: none;
 }
 
 .weather-card {

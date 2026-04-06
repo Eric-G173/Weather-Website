@@ -8,21 +8,18 @@
 </head>
 
 <body>
-    <div class="hero">
-<header class="top-bar">
-    <h1>CloudySensor</h1>
+<header class="index-title">
+  <h1>CloudySensor</h1>
 </header>
-</div>
 
 
-
-<form class="city-form" action="/submit" method="POST">
+<form class="city-form button-group" action="/submit" method="POST">
     <input type="text" name="city" placeholder="Enter your city">
-    <button type="submit">Submit</button>
+    <button type="submit" class="index-btn">Submit</button>
 </form>
-<nav class = "about-link">
-    <a href ="#">About me</a>
-    <a href = "#">Test</a>
+<nav class = "about-link button-group">
+    <a href ="#" class="index-btn">About me</a>
+    <a href = "#" class="index-btn">Test</a>
 </nav>
 
 {% if error %}
