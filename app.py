@@ -28,7 +28,6 @@ def home():
     )
 
 
-
 @app.route("/submit", methods=["POST"])
 def submit():
     city = request.form.get("city")
