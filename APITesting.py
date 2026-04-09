@@ -22,7 +22,7 @@ def get_weather(city_name):
     current = weather_response["current"]
     daily = weather_response["daily"]
     print(current["temperature"],)
-    return { # All in celsius (minus condition)
+    return { # All in Celsius (minus condition)
         "tempNow": current["temperature"],              
         "temp_max": daily["temperature_2m_max"][0],     
         "temp_min": daily["temperature_2m_min"][0],     
