@@ -1,0 +1,26 @@
+name: Deploy to PythonAnywhere
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Pull latest code on PythonAnywhere
+        run: |
+          curl -X POST \
+            -H "Authorization: Token ${{ secrets.PA_API_TOKEN }}" \
+            https://www.pythonanywhere.com/api/v0/user/1016/files/path/home/1016/Weather%20Website/git_pull/
+
+      - name: Reload PythonAnywhere web app
+        run: |
+          curl -X POST \
+            -H "Authorization: Token ${{ secrets.PA_API_TOKEN }}" \
+            https://www.pythonanywhere.com/api/v0/user/1016/webapps/1016.pythonanywhere.com/reload/
