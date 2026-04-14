@@ -1,4 +1,4 @@
-name: Deploy to PythonAnywhere
+name: Deploy to Render
 
 on:
   push:
@@ -10,17 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Pull latest code on PythonAnywhere
+      - name: Trigger Render Deploy Hook
         run: |
           curl -X POST \
-            -H "Authorization: Token ${{ secrets.PA_API_TOKEN }}" \
-            https://www.pythonanywhere.com/api/v0/user/1016/files/path/home/1016/Weather%20Website/git_pull/
-
-      - name: Reload PythonAnywhere web app
-        run: |
-          curl -X POST \
-            -H "Authorization: Token ${{ secrets.PA_API_TOKEN }}" \
-            https://www.pythonanywhere.com/api/v0/user/1016/webapps/1016.pythonanywhere.com/reload/
+            -H "Accept: application/json" \
+            ${{ secrets.RENDER_DEPLOY_HOOK }}
