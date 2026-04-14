@@ -39,11 +39,12 @@ jobs:
         run: |
           curl -X POST \
             -H "Authorization: Token ${{ secrets.PA_API_TOKEN }}" \
-            https://www.pythonanywhere.com/api/v0/user/${{ secrets.PA_USERNAME }}/files/path/home/${{ secrets.PA_USERNAME }}/Weather%20Website/git_pull/
+            https://www.pythonanywhere.com/api/v0/user/1016/files/path/home/1016/Weather%20Website/git_pull/
 
       - name: Reload PythonAnywhere web app
         run: |
           curl -X POST \
             -H "Authorization: Token ${{ secrets.PA_API_TOKEN }}" \
-            https://www.pythonanywhere.com/api/v0/user/${{ secrets.PA_USERNAME }}/webapps/${{ secrets.PA_USERNAME }}.pythonanywhere.com/reload/
+            https://www.pythonanywhere.com/api/v0/user/1016/webapps/1016.pythonanywhere.com/reload/
+      
   
