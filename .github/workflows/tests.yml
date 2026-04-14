@@ -35,19 +35,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Add SSH key
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.PA_PRIVATE_KEY }}
-
-      - name: Add PythonAnywhere host key
+      - name: Pull latest code on PythonAnywhere
         run: |
-          ssh-keyscan ${{ secrets.PA_HOST }} >> ~/.ssh/known_hosts
+          curl -X POST \
+            -H "Authorization: Token ${{ secrets.PA_API_TOKEN }}" \
+            https://www.pythonanywhere.com/api/v0/user/${{ secrets.PA_USERNAME }}/files/path/home/${{ secrets.PA_USERNAME }}/Weather%20Website/git_pull/
 
-      - name: Deploy to PythonAnywhere
+      - name: Reload PythonAnywhere web app
         run: |
-          ssh ${{ secrets.PA_USERNAME }}@${{ secrets.PA_HOST }} "
-            cd ~/'Weather Website' &&
-            git pull &&
-            pa_reload_webapp ${{ secrets.PA_USERNAME }}.pythonanywhere.com
-          "
+          curl -X POST \
+            -H "Authorization: Token ${{ secrets.PA_API_TOKEN }}" \
+            https://www.pythonanywhere.com/api/v0/user/${{ secrets.PA_USERNAME }}/webapps/${{ secrets.PA_USERNAME }}.pythonanywhere.com/reload/
+  
