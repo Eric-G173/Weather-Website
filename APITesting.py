@@ -6,11 +6,14 @@ def get_weather(city_name):
     city = city_name
     geo_location = f"https://geocoding-api.open-meteo.com/v1/search?name={city}"
     response = requests.get(geo_location).json()
+    matched_city = response["results"][0]["name"]
+    matched_country = response["results"][0]["country"]
+    if not response["results"]:
+        return {"matched_city": None}
     if response.get("cod") == "404": 
         return None
     lat = response["results"][0]["latitude"]
     lon = response["results"][0]["longitude"]
-
     weather_url = (
     f"https://api.open-meteo.com/v1/forecast?"
     f"latitude={lat}&longitude={lon}"
@@ -21,8 +24,9 @@ def get_weather(city_name):
     weather_response = requests.get(weather_url).json()
     current = weather_response["current"]
     daily = weather_response["daily"]
-    print(current["temperature"],)
     return { # All in Celsius (minus condition)
+        "city": matched_city,
+        "country": matched_country,
         "tempNow": current["temperature"],              
         "temp_max": daily["temperature_2m_max"][0],     
         "temp_min": daily["temperature_2m_min"][0],     

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session
 
-import APITesting
+from APITesting import get_weather
 from dotenv import load_dotenv
 import os
 import re
@@ -37,10 +37,11 @@ def submit():
     if error:
         return render_template("index.html", error=error)
 
-    data_dict = APITesting.get_weather(city)
+    data_dict = get_weather(city)
     return render_template(
         "weather.html",
-        city=city,
+        city=data_dict["city"],
+        country = data_dict["country"],
         temperature=data_dict["tempNow"],
         feels_like = data_dict["feels_like"],
         high = data_dict["temp_max"],
