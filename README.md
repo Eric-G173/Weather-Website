@@ -10,6 +10,7 @@ https://ericg.pythonanywhere.com/
 - Accurate weather data
 - Fast temperature conversions
 - Fully deployed on pythonanywhere
+- Continuous Integration and Auto Deployment
 
 ## Tech Stack
 Python, Flask, JavaScript, HTML, CSS.
