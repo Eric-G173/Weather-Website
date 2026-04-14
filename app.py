@@ -8,7 +8,7 @@ import re
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY", "test_key") #Test key used as fallback for CI tests
+app.secret_key = os.getenv("SECRET_KEY", "test_key") #Test key used as fallback for CI test
 def error_check(city_name):
     if not city_name:
         return "Please enter a city."

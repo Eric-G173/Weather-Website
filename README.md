@@ -16,3 +16,4 @@ https://ericg.pythonanywhere.com/
 Python, Flask, JavaScript, HTML, CSS.
 
 Special thank you to open-meteo for providing their free API. Link for them: https://open-meteo.com/
+
