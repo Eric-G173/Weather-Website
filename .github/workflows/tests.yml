@@ -40,6 +40,10 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.PA_PRIVATE_KEY }}
 
+      - name: Add PythonAnywhere host key
+        run: |
+          ssh-keyscan ${{ secrets.PA_HOST }} >> ~/.ssh/known_hosts
+
       - name: Deploy to PythonAnywhere
         run: |
           ssh ${{ secrets.PA_USERNAME }}@${{ secrets.PA_HOST }} "
