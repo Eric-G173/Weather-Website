@@ -4,16 +4,23 @@ This website integrates information from the open-meteo API in order to fetch re
 
 
 ## Live Deployment
-https://ericg.pythonanywhere.com/ 
+https://weather-website-fjzu.onrender.com/ 
 
 ## Features
 - Accurate weather data
+- Able to locate any city in the world
 - Fast temperature conversions
-- Fully deployed on pythonanywhere
-- Continuous Integration and Auto Deployment
+- Continuous Deployment to Render via Deploy Hook
+- Continuous Integration via GitHub Actions to test new changes
 
 ## Tech Stack
-Python, Flask, JavaScript, HTML, CSS.
+- Python
+- Flask
+- JavaScript
+- HTML
+- CSS
+- Gunicorn (Production Server)
+- Render (Deployment)
 
 Special thank you to open-meteo for providing their free API. Link for them: https://open-meteo.com/
 
