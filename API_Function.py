@@ -42,10 +42,13 @@ def get_weather(city_name):
     )
 
     weather_response = requests.get(weather_url).json()
+
+    print("DEBUG weather_response =", weather_response)
+    print("DEBUG keys =", list(weather_response.keys()))
+
     current = weather_response["current"]
     daily = weather_response["daily"]
-    print("DEBUG weather_response =", weather_response)
-    print("DEBUG keys =", weather_response.keys())
+
 
     return { # All in Celsius (minus condition)
         "city": matched_city,
