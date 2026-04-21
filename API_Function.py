@@ -5,13 +5,14 @@ def reverse_geocode(lat, lon):
     params = {
         "lat": lat,
         "lon": lon,
+        "zoom": 10,
         "format": "json"
     }
 
     data = requests.get(url, params=params, headers={"User-Agent": "CloudySensor"}).json()
 
     address = data.get("address", {})
-    city = address.get("city") or address.get("town") or address.get("village")
+    city = address.get("city")
 
     return city
 

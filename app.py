@@ -34,6 +34,8 @@ def submit():
 
     if lat and lon:
         city = reverse_geocode(lat, lon)
+        if not city:
+            return render_template("index.html", error="Unable to determine your city from GPS.")
     else:
         city = request.values.get("city", "")
     session["city"] = city
@@ -42,7 +44,10 @@ def submit():
     if error:
         return render_template("index.html", error=error)
 
+
     data_dict = get_weather(city)
+    if "condition" not in data_dict:
+        return render_template("index.html", error="Weather data unavailable for this location.")
     return render_template(
         "weather.html",
         city=data_dict["city"],
