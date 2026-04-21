@@ -6,13 +6,19 @@ def reverse_geocode(lat, lon):
         "lat": lat,
         "lon": lon,
         "zoom": 10,
-        "format": "json"
+        "format": "json",
+        "addressdetails":1
     }
 
     data = requests.get(url, params=params, headers={"User-Agent": "CloudySensor"}).json()
 
     address = data.get("address", {})
-    city = address.get("city")
+    city = (
+            address.get("city") or
+            address.get("town") or
+            address.get("village") or
+            address.get("municipality")
+    )
 
     return city
 
@@ -36,9 +42,8 @@ def get_weather(city_name):
     )
 
     weather_response = requests.get(weather_url).json()
-    current = weather_response.get("current")
-
-    daily = weather_response.get("daily")
+    current = weather_response["current"]
+    daily = weather_response["daily"]
     return { # All in Celsius (minus condition)
         "city": matched_city,
         "country": matched_country,
