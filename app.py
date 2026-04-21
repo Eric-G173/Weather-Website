@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session
 
-from APITesting import get_weather
+from API_Function import get_weather, reverse_geocode
 from dotenv import load_dotenv
 import os
 import re
@@ -27,9 +27,15 @@ def home():
     )
 
 
-@app.route("/submit", methods=["POST"])
+@app.route("/submit", methods=["GET", "POST"])
 def submit():
-    city = request.form.get("city", "")
+    lat = request.values.get("lat")
+    lon = request.values.get("lon")
+
+    if lat and lon:
+        city = reverse_geocode(lat, lon)
+    else:
+        city = request.values.get("city", "")
     session["city"] = city
 
     error = error_check(city)

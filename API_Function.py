@@ -1,6 +1,19 @@
 import requests
 
+def reverse_geocode(lat, lon):
+    url = "https://nominatim.openstreetmap.org/reverse"
+    params = {
+        "lat": lat,
+        "lon": lon,
+        "format": "json"
+    }
 
+    data = requests.get(url, params=params, headers={"User-Agent": "CloudySensor"}).json()
+
+    address = data.get("address", {})
+    city = address.get("city") or address.get("town") or address.get("village")
+
+    return city
 
 def get_weather(city_name):
     city = city_name

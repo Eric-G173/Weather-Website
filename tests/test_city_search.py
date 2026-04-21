@@ -1,11 +1,11 @@
 from app import app
-
+from API_Function import reverse_geocode
 def test_submit_valid_city(monkeypatch):
     client = app.test_client()
 
 
     monkeypatch.setattr(
-        "APITesting.get_weather",
+        "API_Function.get_weather",
         lambda city: {
             "tempNow": 70,
             "feels_like": 68,
@@ -44,3 +44,16 @@ def test_submit_invalid_city(monkeypatch):
     assert response.status_code == 200
     assert b"Invalid city" in response.data
 
+def test_reverse_geocode(monkeypatch):
+    def fake_get(url, params=None, headers=None):
+        class FakeResponse:
+            def json(self):
+                return {
+                    "address": {"city": "Phoenix"}
+                }
+        return FakeResponse()
+
+    monkeypatch.setattr("API_Function.requests.get", fake_get)
+
+    city = reverse_geocode(33.3, -112.0)
+    assert city == "Phoenix"
