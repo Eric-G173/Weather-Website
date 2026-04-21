@@ -75,11 +75,6 @@ body {
   border: 1px solid transparent;
 }
 
-.about-link {
-  display: flex;
-  justify-content: center;
-  gap: 20px;   
-}
 
 .index-btn {
   padding: 12px 26px;
