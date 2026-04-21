@@ -46,6 +46,9 @@ def submit():
 
 
     data_dict = get_weather(city)
+    print("DEBUG city =", city)
+    print("DEBUG data_dict =", data_dict)
+
     return render_template(
         "weather.html",
         city=data_dict["city"],
