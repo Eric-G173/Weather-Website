@@ -46,6 +46,8 @@ def submit():
 
 
     data_dict = get_weather(city)
+    if not data_dict:
+        return render_template("index.html", error="Weather unavailable right now. Please try again later.")
     print("DEBUG city =", city)
     print("DEBUG data_dict =", data_dict)
 
