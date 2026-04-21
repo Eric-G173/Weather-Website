@@ -36,7 +36,8 @@ def get_weather(city_name):
     )
 
     weather_response = requests.get(weather_url).json()
-    current = weather_response["current"]
+    current = (weather_response["current"] or
+               weather_response.get("current_weather"))
     daily = weather_response["daily"]
     return { # All in Celsius (minus condition)
         "city": matched_city,
