@@ -46,8 +46,6 @@ def submit():
 
 
     data_dict = get_weather(city)
-    if "condition" not in data_dict:
-        return render_template("index.html", error="Weather data unavailable for this location.")
     return render_template(
         "weather.html",
         city=data_dict["city"],
